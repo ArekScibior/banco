@@ -9,9 +9,14 @@
 
 			<div class="col-md-6">
 				<ul class='menu'>
-					<li v-for="item in menuHeaderItems" v-bind:key="item.id">
+					<li class='item' v-for="item in menuHeaderItems" v-bind:key="item.id" @mouseover="onOver(item)" @mouseleave="onLeave(item)">
 						<span class="menu-element">{{item.name}}</span>
 						<span v-if="item.hasSub"><b-icon class='icon-down' icon="chevron-down"></b-icon></span>
+						<ul v-show="item.showSubs" class="sub-items">
+							<li class='sub-item' v-for="subItem in item.sub" v-bind:key="subItem.id">
+								{{subItem}}
+							</li>
+						</ul>
 					</li>
 				</ul>
 				
@@ -41,30 +46,49 @@ export default {
 		msg: String
 	},
 	data() {
-		return { 
+		return {
 			menuHeaderItems: [
-				{id:'0', name: 'Płatności', hasSub: true, sub: ['Przelew', 'Lista zdefiniowanych kontaktów', 'Zlecenia stałe']},
+				{id:'0', name: 'Płatności', hasSub: true, showSubs: false, sub: ['Przelew', 'Lista zdefiniowanych kontaktów', 'Zlecenia stałe']},
 				{id:'1', name: 'Historia', hasSub: false},
-				{id:'2', name: 'Karty', hasSub: true, sub: ['Moje karty']},
+				{id:'2', name: 'Karty', hasSub: true, showSubs: false, sub: ['Moje karty']},
 				{id:'3', name: 'Lokaty', hasSub: false},
 				{id:'4', name: 'Finanse', hasSub: false},
 				{id:'5', name: 'Oferty', hasSub: false},
 				{id:'6', name: 'Kontakt', hasSub: false},
 			]
 		}
-	} 
+	},
+	methods: {
+		onOver(item) {
+			item.showSubs = true;
+		},
+
+		onLeave(item) {
+			item.showSubs = false;
+		}
+	}
 }
 </script>
 
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
+	ul, menu, dir {
+		display: block;
+		list-style-type: none;
+		-webkit-margin-before: 1em;
+		-webkit-margin-after: 1em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		-webkit-padding-start: 40px;
+	}
+
 	.navigation {
 		background-color: #C60321;
 		opacity: 0.85;
 		height: 80px;
 	}
-
+	
 	/* left side	 */
 	.logo {
 		line-height: 80px;
@@ -88,7 +112,7 @@ export default {
 		margin: 0;
 		line-height: 80px;
 	}
-	.menu li {
+	.menu .item {
 		margin: 0px 50px 0 0;
 		text-decoration: none;
 		list-style-type: none;
@@ -101,13 +125,38 @@ export default {
 		border-bottom: 2px solid #fff;
 	}
 
+	.sub-items {
+		position: absolute;
+		background-color: #c60320de;
+		text-align: left;
+		margin-top: -1px;
+		list-style: none;
+		padding: 0;
+		width: 320px;
+	}
+	.sub-items .sub-item {
+		color: #fff !important;
+		text-decoration: none;
+		list-style-type: none;
+		cursor: pointer;
+		color: #fff;
+		font-size: 16px;
+		padding-left: 10px;
+		padding-right: 10px;
+		height: 47px;
+		line-height: 47px;
+	}
+
+	.sub-items .sub-item:hover {
+		background-color: #E01E5A;
+	}
+
 	/* right side */
 	.user-info {line-height: 80px;}
 	.avatar {
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
-		cursor: pointer;
 	}
 	.user-name {
 		color: #fff;

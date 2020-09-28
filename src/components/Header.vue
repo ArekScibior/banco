@@ -21,7 +21,7 @@
 					<img class='avatar' alt="avatar-user" src="../assets/avatar.jpg">
 					<label for="" class='user-name'>Arek Ścibior</label>
 					<b-icon class='gear-icon' icon="gear-fill"></b-icon>
-					<b-button variant="primary" class="mb-2 logout-button">
+					<b-button variant="primary" class="mb-2 logout-button focus:outline-none">
 						<b-icon icon="power" style="font-weight: bold;" aria-hidden="true"></b-icon> Logout
 					</b-button>
 				</div>
@@ -64,6 +64,25 @@ export default {
 		opacity: 0.85;
 		height: 80px;
 	}
+
+	/* left side	 */
+	.logo {
+		line-height: 80px;
+		text-align: left;
+		margin-left: 35px;
+	}
+	.logo .logo-name {
+		font-family: 'Monoton', cursive;
+		color: #fff;
+		font-size: 40px;
+	}
+	.icon-down {
+		font-size: 19px;
+		font-weight: bold;
+		margin-left: 5px;
+	}
+
+	/* center side */
 	.menu {
 		display: inline-flex;
 		margin: 0;
@@ -81,6 +100,8 @@ export default {
 	.menu-element:hover {
 		border-bottom: 2px solid #fff;
 	}
+
+	/* right side */
 	.user-info {line-height: 80px;}
 	.avatar {
 		width: 40px;
@@ -98,7 +119,6 @@ export default {
 		fill: #fff; 
 		cursor: pointer;
 	}
-
 	.logout-button {
 		background-color: #fff !important;
 		border: none !important;
@@ -107,20 +127,12 @@ export default {
 		font-weight: bold !important;
 		margin-left: 25px !important;
 		padding: 7px !important;
+		outline: none !important;
 	}
-	.logo {
-		line-height: 80px;
-		text-align: left;
-		margin-left: 35px;
+	.logout-button:focus {
+		box-shadow: 0 0 0 0.2rem rgb(255 38 38 / 0%) !important;
 	}
-	.logo .logo-name {
-		font-family: 'Monoton', cursive;
-		color: #fff;
-		font-size: 40px;
-	}
-	.icon-down {
-		font-size: 19px;
-		font-weight: bold;
-		margin-left: 5px;
+	.logout-button:hover {
+		background-color: rgba(228, 217, 217, 0.877) !important;
 	}
 </style>

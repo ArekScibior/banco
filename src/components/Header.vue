@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="logo">
-					<!-- <img alt="Vue logo" src="../assets/logo.png" width="50" height="50"> -->
+					<span class='logo-name'>BANCO</span>
 				</div>
 			</div>
 
@@ -11,7 +11,7 @@
 				<ul class='menu'>
 					<li v-for="item in menuHeaderItems" v-bind:key="item.id">
 						<span class="menu-element">{{item.name}}</span>
-						<b-icon style="margin-left:5px;" icon="chevron-down"></b-icon>
+						<span v-if="item.hasSub"><b-icon class='icon-down' icon="chevron-down"></b-icon></span>
 					</li>
 				</ul>
 				
@@ -22,7 +22,7 @@
 					<label for="" class='user-name'>Arek Ścibior</label>
 					<b-icon class='gear-icon' icon="gear-fill"></b-icon>
 					<b-button variant="primary" class="mb-2 logout-button">
-						<b-icon icon="power" aria-hidden="true"></b-icon> Logout
+						<b-icon icon="power" style="font-weight: bold;" aria-hidden="true"></b-icon> Logout
 					</b-button>
 				</div>
 				
@@ -57,6 +57,8 @@ export default {
 </script>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
+
 	.navigation {
 		background-color: #C60321;
 		opacity: 0.85;
@@ -68,7 +70,7 @@ export default {
 		line-height: 80px;
 	}
 	.menu li {
-		margin: 0px 60px 0 0;
+		margin: 0px 50px 0 0;
 		text-decoration: none;
 		list-style-type: none;
 		cursor: pointer;
@@ -91,7 +93,8 @@ export default {
 		padding-left: 10px;
 	}
 	.gear-icon {
-		margin-left:5px; 
+		margin-left:5px;
+		margin-top: -3px;
 		fill: #fff; 
 		cursor: pointer;
 	}
@@ -100,7 +103,24 @@ export default {
 		background-color: #fff !important;
 		border: none !important;
 		color: #000 !important;
+		font-size: 15px !important;
+		font-weight: bold !important;
+		margin-left: 25px !important;
+		padding: 7px !important;
+	}
+	.logo {
+		line-height: 80px;
+		text-align: left;
+		margin-left: 35px;
+	}
+	.logo .logo-name {
+		font-family: 'Monoton', cursive;
+		color: #fff;
+		font-size: 40px;
+	}
+	.icon-down {
+		font-size: 19px;
 		font-weight: bold;
-		margin-left: 25px;
+		margin-left: 5px;
 	}
 </style>

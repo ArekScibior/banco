@@ -10,17 +10,20 @@
 			<div class="col-md-6">
 				<ul class='menu'>
 					<li v-for="item in menuHeaderItems" v-bind:key="item.id">
-						<span class="menuElement">{{item.name}}</span>
+						<span class="menu-element">{{item.name}}</span>
 						<b-icon style="margin-left:5px;" icon="chevron-down"></b-icon>
 					</li>
 				</ul>
 				
 			</div>
 			<div class="col-md-3">
-				<div class="userInfo">
-					<img class='avatar' alt="avatarUser" src="../assets/avatar.jpg">
-					<label for="" class='userName'>Arek Ścibior</label>
-					<b-icon style="margin-left:5px; fill: #fff; cursor: pointer;" icon="gear-fill"></b-icon>
+				<div class="user-info">
+					<img class='avatar' alt="avatar-user" src="../assets/avatar.jpg">
+					<label for="" class='user-name'>Arek Ścibior</label>
+					<b-icon class='gear-icon' icon="gear-fill"></b-icon>
+					<b-button variant="primary" class="mb-2 logout-button">
+						<b-icon icon="power" aria-hidden="true"></b-icon> Logout
+					</b-button>
 				</div>
 				
 				<div class="settings">
@@ -41,8 +44,12 @@ export default {
 		return { 
 			menuHeaderItems: [
 				{id:'0', name: 'Płatności', hasSub: true, sub: ['Przelew', 'Lista zdefiniowanych kontaktów', 'Zlecenia stałe']},
-				{id:'1', name: 'Karty', hasSub: true, sub: ['Moje karty']},
-				{id:'2', name: 'Kontakt', hasSub: false}
+				{id:'1', name: 'Historia', hasSub: false},
+				{id:'2', name: 'Karty', hasSub: true, sub: ['Moje karty']},
+				{id:'3', name: 'Lokaty', hasSub: false},
+				{id:'4', name: 'Finanse', hasSub: false},
+				{id:'5', name: 'Oferty', hasSub: false},
+				{id:'6', name: 'Kontakt', hasSub: false},
 			]
 		}
 	} 
@@ -66,25 +73,34 @@ export default {
 		list-style-type: none;
 		cursor: pointer;
 		color: #fff;
-		font-size: 20px;
+		font-size: 16px;
 
 	}
-	/* .menuElement {
-		
-	} */
-	.menuElement:hover {
+	.menu-element:hover {
 		border-bottom: 2px solid #fff;
 	}
-	.userInfo {line-height: 80px;}
+	.user-info {line-height: 80px;}
 	.avatar {
 		width: 40px;
 		height: 40px;
 		border-radius: 50%;
 		cursor: pointer;
 	}
-	.userName {
+	.user-name {
 		color: #fff;
-		font-weight: bold;
 		padding-left: 10px;
+	}
+	.gear-icon {
+		margin-left:5px; 
+		fill: #fff; 
+		cursor: pointer;
+	}
+
+	.logout-button {
+		background-color: #fff !important;
+		border: none !important;
+		color: #000 !important;
+		font-weight: bold;
+		margin-left: 25px;
 	}
 </style>
